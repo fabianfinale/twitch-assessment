@@ -30,6 +30,7 @@ const slice = createSlice({
           .filter((channel) => channel.id === selectedChannel.broadcaster_id)
           .map((channel) => channel.thumbnail_url),
       };
+      channels.loading = false;
     },
   },
 });
@@ -54,7 +55,7 @@ export const loadChannels = (searchCriteria) =>
 export const selectChannel = (id) =>
   apiCallBegan({
     url: `/channels?broadcaster_id=${id}`,
-    //   onStart: channelsApiCalled.type,
+    onStart: channelsApiCalled.type,
     onSuccess: channelSelected.type,
-    //   onError: channelsApiCallFailed.type,
+    onError: channelsApiCallFailed.type,
   });

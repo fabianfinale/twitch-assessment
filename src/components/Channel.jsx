@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ReactTooltip from 'react-tooltip';
 
 const Channel = (props) => {
   const { channel, onClick: handleClick } = props;
@@ -15,11 +16,11 @@ const Channel = (props) => {
         />
       </div>
       <div className='d-flex flex-column align-items-start flex-grow-1'>
-        <h2 className='display-6'>
+        <h2 className='display-6' data-tip='Display name of the broadcaster'>
           <FontAwesomeIcon icon='at' fixedWidth className='me-2' />
           {channel.display_name}
         </h2>
-        <p className='text-muted fs-5'>
+        <p className='text-muted fs-5' data-tip='Stream title'>
           <FontAwesomeIcon icon='broadcast-tower' fixedWidth className='me-2' />
           {channel.title}
         </p>
@@ -28,8 +29,9 @@ const Channel = (props) => {
         className='btn btn-custom btn-lg'
         onClick={() => handleClick(channel.id)}>
         <FontAwesomeIcon icon='check' fixedWidth className='me-2' />
-        Select
+        Select channel
       </button>
+      <ReactTooltip />
     </div>
   );
 };

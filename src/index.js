@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
 import 'bootstrap/dist/js/bootstrap.bundle';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -11,8 +12,10 @@ import {
   faLanguage,
   faSearch,
   faGamepad,
+  faStopwatch,
+  faSignOutAlt,
+  faCommentDots,
 } from '@fortawesome/free-solid-svg-icons';
-import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import { faTwitch } from '@fortawesome/free-brands-svg-icons';
 
@@ -23,6 +26,9 @@ library.add(
   faBroadcastTower,
   faLanguage,
   faGamepad,
+  faStopwatch,
+  faSignOutAlt,
+  faCommentDots,
   faTwitch
 );
 const store = configureStore();

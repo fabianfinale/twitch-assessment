@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { clientId, redirectUri, responseType } from '../twitchApi';
+import { clientId, redirectUri, responseType } from '../store/middleware/api';
 
 const Welcome = () => {
   return (

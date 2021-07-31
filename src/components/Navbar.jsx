@@ -1,13 +1,18 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-import { logout } from '../store/auth';
+import { userLoggedOut } from '../store/auth';
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const { picture, preferred_username: username } = useSelector(
     (state) => state.auth.user
   );
-  const accessToken = useSelector((state) => state.auth.accessToken);
+
+  const handleLogout = () => {
+    dispatch(userLoggedOut());
+  };
 
   return (
     <header>
@@ -35,7 +40,7 @@ const Navbar = () => {
               viewBox='0 0 16 16'>
               <path d='M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z' />
             </svg>
-            <Link className='navbar-brand' to='/'>
+            <Link className='navbar-brand' to='/channels'>
               Twitch Assessment
             </Link>
           </div>
@@ -56,6 +61,7 @@ const Navbar = () => {
                     role='button'
                     data-bs-toggle='dropdown'
                     aria-expanded='false'>
+                    {username}
                     <img
                       className='rounded-circle ms-2'
                       src={picture}
@@ -67,10 +73,8 @@ const Navbar = () => {
                     className='dropdown-menu dropdown-menu-dark'
                     aria-labelledby='navbarDropdown'>
                     <li>
-                      <button
-                        className='dropdown-item'
-                        onClick={() => logout(accessToken)}>
-                        Logout
+                      <button className='dropdown-item' onClick={handleLogout}>
+                        <FontAwesomeIcon icon='sign-out-alt' /> Logout
                       </button>
                     </li>
                   </ul>

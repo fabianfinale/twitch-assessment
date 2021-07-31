@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-import { clientId, setAuthToken } from '../twitchApi';
+import { setAuthToken } from './middleware/api';
 
 const slice = createSlice({
   name: 'auth',
@@ -10,25 +9,26 @@ const slice = createSlice({
     user: {},
   },
   reducers: {
-    userAuthenticated: (auth, action) => {
-      const accessToken = localStorage.getItem('accessToken');
-      const idToken = localStorage.getItem('idToken');
-      auth.accessToken = accessToken;
-      auth.user = jwtDecode(idToken);
-      setAuthToken(accessToken);
+    userAuthenticated: (auth) => {
+      try {
+        const accessToken = localStorage.getItem('accessToken');
+        const idToken = localStorage.getItem('idToken');
+
+        auth.accessToken = accessToken;
+        auth.user = jwtDecode(idToken);
+        setAuthToken(accessToken);
+      } catch (error) {}
     },
-    userLoggedOut: () => {
-      localStorage.removeItem('token');
+    userLoggedOut: (auth) => {
+      auth.accessToken = '';
+      auth.user = {};
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('idToken');
+      window.location = '/';
     },
   },
 });
 
 export default slice.reducer;
 
-export const { userAuthenticated } = slice.actions;
-
-export const logout = async (accessToken) => {
-  await axios.post(
-    `https://id.twitch.tv/oauth2/revoke?client_id=${clientId}&token=${accessToken}`
-  );
-};
+export const { userAuthenticated, userLoggedOut } = slice.actions;
