@@ -9,8 +9,7 @@ const Footer = () => {
           Copyright &copy; {new Date().getFullYear()} -{' '}
           <Link
             to={{
-              pathname:
-                'mailto:fabianfinale@gmail.com?subject=Twitch%20Assessment',
+              pathname: 'https://github.com/fabianfinale',
             }}
             target='_blank'>
             Fabian Finalé Franqui
