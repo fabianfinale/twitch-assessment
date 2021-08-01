@@ -13,7 +13,7 @@ const Routes = () => {
   return (
     <main className='flex-shrink-0 flex-grow-1'>
       <Switch>
-        <Route path='/link' component={NotFound} />
+        <Route path='/not-found' component={NotFound} />
         <Route
           exact
           path='/channel-info'
@@ -34,6 +34,7 @@ const Routes = () => {
         />
         <Route exact path='/redirect' component={RedirectFromTwitch} />
         <Route exact path='/' component={Welcome} />
+        <Redirect to='/not-found' />
       </Switch>
     </main>
   );
