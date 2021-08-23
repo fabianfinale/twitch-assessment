@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { apiCallBegan, apiCallFailed, apiCallSucceed } from '../api';
+import config from '../../config.json';
 
-export const clientId = 'gr3ec77j3qb925ypyh818j65dog7tw';
+export const clientId = config.clientId;
 export const redirectUri = 'http://localhost:3000/redirect';
 export const responseType = 'token+id_token';
 

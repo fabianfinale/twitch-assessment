@@ -1,6 +1,14 @@
 # Getting Started with Create React App
 
+![alt text](https://github.com/fabianfinale/twitch-assessment/blob/main/TwitchAssessment.png?raw=true)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+In order to consume services from Twitch API, a Client ID must be generated from [the Twitch Developer Console](https://dev.twitch.tv/login). After authenticating, the app must be registered using http://localhost:3000/redirect as the OAuth Redirect URL.
+
+![alt text](https://github.com/fabianfinale/twitch-assessment/blob/main/TwitchConfig.png?raw=true)
+
+Once you have the newly generated Client ID, it must be specified in the config.json configuration file.
 
 ## Available Scripts
 
